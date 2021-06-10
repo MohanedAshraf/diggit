@@ -1,5 +1,5 @@
 import { createConnection } from 'typeorm';
-import { User } from './entities/User';
+import User from './entities/User';
 import express from 'express';
 import morgan from 'morgan';
 import dotenv from 'dotenv';
@@ -10,6 +10,7 @@ dotenv.config();
 import authRoutes from './routes/auth';
 import trim from './middleware/trim';
 
+const PORT = process.env.PORT;
 //initialize express app
 const app = express();
 
@@ -26,8 +27,8 @@ app.get('/', (_, res) => {
 app.use('/api/auth', authRoutes);
 
 //server connection
-app.listen(5000, async () => {
-  console.log('server running at http://localhost:5000');
+app.listen(PORT, async () => {
+  console.log(`server running at http://localhost:${PORT}`);
   try {
     await createConnection();
 

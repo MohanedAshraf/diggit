@@ -1,9 +1,16 @@
 import { IsEmail, Length } from 'class-validator';
-import { Entity as TOEntity, Column, Index, BeforeInsert } from 'typeorm';
+import {
+  Entity as TOEntity,
+  Column,
+  Index,
+  BeforeInsert,
+  OneToMany,
+} from 'typeorm';
 import bcrypt from 'bcrypt';
 import { Exclude } from 'class-transformer';
 
 import Entity from './Entity';
+import Post from './Post';
 
 @TOEntity('users')
 export default class User extends Entity {
@@ -26,6 +33,9 @@ export default class User extends Entity {
   @Column()
   @Length(6, 255)
   password: string;
+
+  @OneToMany(() => Post, (post) => post.user)
+  posts: Post[];
 
   @BeforeInsert()
   async hashPassword() {

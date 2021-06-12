@@ -1,4 +1,4 @@
-export function makeId(length: Number): String {
+export function makeId(length: Number): string {
   let result = '';
   const characters =
     'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
@@ -9,7 +9,7 @@ export function makeId(length: Number): String {
   return result;
 }
 
-export function slugify(str: String): String {
+export function slugify(str: string): string {
   str = str.trim();
   str = str.toLowerCase();
 

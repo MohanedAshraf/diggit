@@ -32,7 +32,7 @@ const register = async (req: Request, res: Response) => {
     return res.json(user);
   } catch (err) {
     console.log(err);
-    res.status(500).json(err);
+    return res.status(500).json(err);
   }
 };
 
@@ -53,7 +53,7 @@ const login = async (req: Request, res: Response) => {
     if (!passwordMatches)
       return res.status(401).json({ password: 'Password is incorrect' });
 
-    const token = jwt.sign({ username }, process.env.JWT_SECRET);
+    const token = jwt.sign({ username }, process.env.JWT_SECRET!);
     res.set(
       'Set-Cookie',
       cookie.serialize('token', token, {
@@ -68,11 +68,11 @@ const login = async (req: Request, res: Response) => {
     return res.json(user);
   } catch (err) {
     console.log(err);
-    res.status(500).json(err);
+    return res.status(500).json(err);
   }
 };
 
-const me = async (req: Request, res: Response) => {
+const me = async (_: Request, res: Response) => {
   return res.json(res.locals.user);
 };
 

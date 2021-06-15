@@ -11,8 +11,6 @@ import Entity from './Entity';
 import User from './User';
 import Post from './Post';
 
-import { makeId, slugify } from '../util/helpers';
-
 @TOEntity('subs')
 export default class Sub extends Entity {
   constructor(sub: Partial<Sub>) {

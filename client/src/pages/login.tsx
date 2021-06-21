@@ -7,7 +7,6 @@ import { useRouter } from 'next/router';
 import InputGroup from '../components/InputGroup';
 
 export default function Register() {
-  const [email, setEmail] = useState('');
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [errors, setErrors] = useState<any>({});
@@ -17,12 +16,11 @@ export default function Register() {
   const submitForm = async (event: FormEvent) => {
     event.preventDefault();
     try {
-      await Axios.post('/auth/register', {
-        email,
+      await Axios.post('/auth/login', {
         username,
         password,
       });
-      router.push('/login');
+      router.push('/');
     } catch (err) {
       setErrors(err.response.data);
     }
@@ -30,7 +28,7 @@ export default function Register() {
   return (
     <div className="flex ">
       <Head>
-        <title>Register</title>
+        <title>Login</title>
       </Head>
 
       <div
@@ -40,19 +38,11 @@ export default function Register() {
 
       <div className="flex flex-col justify-center pl-6">
         <div className="w-70">
-          <h1 className="mb-2 text-lg font-medium">Sign up</h1>
+          <h1 className="mb-2 text-lg font-medium">Login</h1>
           <p className="mb-10 text-xs">
             By continuing, you agree to our User Agreement and Privacy Policy.
           </p>
           <form onSubmit={submitForm}>
-            <InputGroup
-              className="mb-2"
-              type="email"
-              value={email}
-              setValue={setEmail}
-              placeholder="EMAIL"
-              error={errors.email}
-            />
             <InputGroup
               className="mb-2"
               type="text"
@@ -71,15 +61,15 @@ export default function Register() {
             />
 
             <button className="w-full p-3 text-xs font-bold text-white uppercase bg-blue-500 border border-blue-500 rounded">
-              Sign Up
+              Login
             </button>
           </form>
           <small>
-            Already a diggitor?
-            <Link href="/login">
+            New to diggit?
+            <Link href="/register">
               <a className="ml-1 text-xs font-bold text-blue-600 uppercase ">
                 {' '}
-                LOG IN
+                Sign Up
               </a>
             </Link>
           </small>

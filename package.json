@@ -32,6 +32,8 @@
   "scripts": {
     "start": "ts-node src/server.ts",
     "dev": "nodemon --exec ts-node src/server.ts",
-    "typeorm": "ts-node ./node_modules/typeorm/cli.js"
+    "typeorm": "ts-node ./node_modules/typeorm/cli.js",
+    "client": "cd client &&  npm run dev",
+    "dev:both": "concurrently \"npm run dev\" \"npm run client\""
   }
 }

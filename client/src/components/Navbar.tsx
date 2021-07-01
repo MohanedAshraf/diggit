@@ -1,13 +1,13 @@
 import Link from 'next/link';
 
-import Placeholder from '../../public/images/Placeholder.svg';
+import Diggit from '../../public/images/Diggit.svg';
 
 const Navbar: React.FC = () => (
   <div className="fixed inset-x-0 top-0 z-10 flex items-center justify-center h-12 px-5 bg-white ">
     <div className="flex items-center">
       <Link href="/">
         <a>
-          <Placeholder className="w-8 h-8 mr-2 " />
+          <Diggit className="w-8 h-8 mr-2 " />
         </a>
       </Link>
       <span className="text-2xl font-semibold">

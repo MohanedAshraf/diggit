@@ -1,0 +1,32 @@
+@font-face {
+  font-family: 'diggit';
+  src: url('fonts/diggit.ttf?kwlon8') format('truetype'),
+    url('fonts/diggit.woff?kwlon8') format('woff'),
+    url('fonts/diggit.svg?kwlon8#diggit') format('svg');
+  font-weight: normal;
+  font-style: normal;
+  font-display: block;
+}
+
+[class^='icon-'],
+[class*=' icon-'] {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'diggit' !important;
+  speak: never;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-arrow-up:before {
+  content: '\ea32';
+}
+.icon-arrow-down:before {
+  content: '\ea36';
+}

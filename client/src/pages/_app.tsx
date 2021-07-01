@@ -4,6 +4,8 @@ import Navbar from '../components/Navbar';
 import { Fragment } from 'react';
 import { useRouter } from 'next/router';
 
+import { AuthProvider } from '../context/auth';
+
 import '../styles/tailwind.css';
 import '../styles/icons.css';
 
@@ -15,10 +17,10 @@ function MyApp({ Component, pageProps }: AppProps) {
   const authRoutes = ['/register', '/login'];
   const authRoute = authRoutes.includes(pathname);
   return (
-    <Fragment>
+    <AuthProvider>
       {!authRoute && <Navbar />}
       <Component {...pageProps} />
-    </Fragment>
+    </AuthProvider>
   );
 }
 

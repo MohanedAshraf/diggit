@@ -63,7 +63,7 @@ const getSub = async (req: Request, res: Response) => {
     return res.json(sub);
   } catch (err) {
     console.log(err);
-    return res.status(500).json({ error: 'Something went wrong' });
+    return res.status(404).json({ sub: 'Sub is not found' });
   }
 };
 

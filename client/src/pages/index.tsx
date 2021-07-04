@@ -1,7 +1,7 @@
 import Axios from 'axios';
 import Head from 'next/head';
 import Link from 'next/link';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, Fragment } from 'react';
 import dayjs from 'dayjs';
 import relativeTime from 'dayjs/plugin/relativeTime';
 import useSWR from 'swr';
@@ -15,7 +15,7 @@ export default function Home() {
   const { data: posts } = useSWR('/posts');
 
   return (
-    <div className="pt-12">
+    <Fragment>
       <Head>
         <title>diggit: the front page of the internet</title>
       </Head>
@@ -29,6 +29,6 @@ export default function Home() {
         </div>
         {/* SideBar */}
       </div>
-    </div>
+    </Fragment>
   );
 }

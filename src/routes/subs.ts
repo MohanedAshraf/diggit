@@ -97,8 +97,6 @@ const upload = multer({
     },
   }),
   fileFilter: (_, file: any, callback: FileFilterCallback) => {
-    console.log('aokaoka');
-
     if (file.mimetype == 'image/jpeg' || file.mimetype == 'image/png') {
       callback(null, true);
     } else {

@@ -6,6 +6,7 @@ import Image from 'next/image';
 import classNames from 'classnames';
 
 import PostCard from '../../components/PostCard';
+import SideBar from '../../components/SideBar';
 import { Sub } from '../../types';
 
 import { useAuthState } from '../../context/auth';
@@ -137,6 +138,7 @@ export default function SubPage() {
           {/* Posts and sidbar */}
           <div className="container flex pt-5">
             <div className="w-160">{postsMarkup}</div>
+            <SideBar sub={sub} />
           </div>
         </Fragment>
       )}

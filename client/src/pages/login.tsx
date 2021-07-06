@@ -29,7 +29,7 @@ export default function Register() {
 
       dispatch({ type: 'LOGIN', payload: res.data });
 
-      router.push('/');
+      router.back();
     } catch (err) {
       setErrors(err.response.data);
     }

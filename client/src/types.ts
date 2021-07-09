@@ -7,6 +7,7 @@ export interface Post {
   username: string;
   createdAt: string;
   updatedAt: string;
+  sub?: Sub;
   // Virtual fields
   url: string;
   voteScore?: number;
@@ -35,4 +36,15 @@ export interface Sub {
   imageUrl: string;
   bannerUrl: string;
   postCount?: number;
+}
+
+export interface Comment {
+  identifier: string;
+  body: string;
+  username: string;
+  createdAt: string;
+  updatedAt: string;
+  //Virtuals
+  userVote: number;
+  voteScore: number;
 }

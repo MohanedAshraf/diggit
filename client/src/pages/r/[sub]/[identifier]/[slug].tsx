@@ -1,7 +1,7 @@
 import Head from 'next/head';
 import Link from 'next/link';
 import Image from 'next/image';
-import { FormEvent, useState } from 'react';
+import { FormEvent, useEffect, useState } from 'react';
 
 import { useRouter } from 'next/router';
 import useSWR from 'swr';
@@ -20,6 +20,7 @@ dayjs.extend(relativeTime);
 export default function PostPage() {
   //Local state
   const [newComment, setNewComment] = useState('');
+  const [description, setDescription] = useState('');
   //Global state
   const { authenticated, user } = useAuthState();
 
@@ -36,6 +37,13 @@ export default function PostPage() {
   );
 
   if (error) router.push('/');
+
+  useEffect(() => {
+    if (!post) return;
+    let desc = post.body || post.title;
+    desc = desc.substring(0, 158).concat('..');
+    setDescription(desc);
+  }, [post]);
 
   const vote = async (value: number, comment?: Comment) => {
     // if not logged in goto login page
@@ -78,6 +86,11 @@ export default function PostPage() {
     <>
       <Head>
         <title>{post?.title}</title>
+        <meta name="description" content={description}></meta>
+        <meta property="og:description" content={description} />
+        <meta property="og:title" content={post?.title} />
+        <meta property="twitter:description" content={description} />
+        <meta property="twitter:title" content={post?.title} />
       </Head>
 
       <Link href={`/r/${sub}`}>

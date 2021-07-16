@@ -7,8 +7,9 @@ import { AuthProvider } from '../context/auth';
 
 import '../styles/tailwind.css';
 import '../styles/icons.css';
+import Head from 'next/head';
 
-Axios.defaults.baseURL = 'http://localhost:5000/api';
+Axios.defaults.baseURL = process.env.NEXT_PUBLIC_SERVER_BASE_URL + '/api';
 Axios.defaults.withCredentials = true;
 
 const fetcher = async (url: string) => {
@@ -25,19 +26,24 @@ function MyApp({ Component, pageProps }: AppProps) {
   const authRoutes = ['/register', '/login'];
   const authRoute = authRoutes.includes(pathname);
   return (
-    <SWRConfig
-      value={{
-        fetcher,
-        dedupingInterval: 10000,
-      }}
-    >
-      <AuthProvider>
-        {!authRoute && <Navbar />}
-        <div className={!authRoute ? 'pt-12' : ''}>
-          <Component {...pageProps} />
-        </div>
-      </AuthProvider>
-    </SWRConfig>
+    <>
+      <Head>
+        <title>My new cool app</title>
+      </Head>
+      <SWRConfig
+        value={{
+          fetcher,
+          dedupingInterval: 10000,
+        }}
+      >
+        <AuthProvider>
+          {!authRoute && <Navbar />}
+          <div className={!authRoute ? 'pt-12' : ''}>
+            <Component {...pageProps} />
+          </div>
+        </AuthProvider>
+      </SWRConfig>
+    </>
   );
 }
 

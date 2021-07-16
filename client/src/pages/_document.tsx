@@ -16,6 +16,19 @@ class MyDocument extends Document {
     return (
       <Html>
         <Head>
+          <link rel="icon" type="image/svg+xml" href="/images/Diggit.svg" />
+          <meta property="og:site_name" content="diggit" />
+          {/* <meta property="twitter:site_name" content="@diggit" /> */}
+          <meta property="twitter:card" content="summary" />
+          <meta property="og:type" content="website" />
+          <meta
+            property="og:image"
+            content={`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}/images/Diggit.svg`}
+          />
+          <meta
+            property="twitter:image"
+            content={`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}/images/Diggit.svg`}
+          />
           <link rel="preconnect" href="https://fonts.gstatic.com" />
           <link
             href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@100;200;300;400;500;600;700&display=swap"

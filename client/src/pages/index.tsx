@@ -14,8 +14,13 @@ import { useAuthState } from '../context/auth';
 dayjs.extend(relativeTime);
 export default function Home() {
   const [observedPost, setObservedPost] = useState('');
-  // const { data: posts } = useSWR<Post[]>('/posts');
+
   const { data: topSubs } = useSWR<Sub[]>('/misc/top-subs');
+
+  const description =
+    "Diggit is a network of communities based on people's interests. Find communities you're interested in, and become part of an online community!";
+
+  const title = 'diggit: the front page of the internet';
 
   const { authenticated } = useAuthState();
 
@@ -61,7 +66,12 @@ export default function Home() {
   return (
     <Fragment>
       <Head>
-        <title>diggit: the front page of the internet</title>
+        <title>{title}</title>
+        <meta name="description" content={description}></meta>
+        <meta property="og:description" content={description} />
+        <meta property="og:title" content={title} />
+        <meta property="twitter:description" content={description} />
+        <meta property="twitter:title" content={title} />
       </Head>
 
       <div className="container flex pt-4">

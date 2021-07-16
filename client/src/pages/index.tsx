@@ -26,14 +26,14 @@ export default function Home() {
 
       <div className="container flex pt-4">
         {/* Posts feed */}
-        <div className="w-160">
+        <div className="w-full px-4 md:w-160 md:p-0">
           {posts?.map((post) => {
             return <PostCard post={post} key={post.identifier} />;
           })}
         </div>
         {/* SideBar */}
 
-        <div className="ml-6 w-80">
+        <div className="hidden ml-6 md:block w-80">
           <div className="bg-white rounded">
             <div className="p-4 border-b-2">
               <p className="text-lg font-semibold text-center">

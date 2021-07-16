@@ -6,14 +6,17 @@ import useSWR from 'swr';
 import Image from 'next/image';
 import Link from 'next/link';
 
-import { Sub } from '../types';
+import { Post, Sub } from '../types';
 
 import PostCard from '../components/PostCard';
+import { useAuthState } from '../context/auth';
 
 dayjs.extend(relativeTime);
 export default function Home() {
-  const { data: posts } = useSWR('/posts');
-  const { data: topSubs } = useSWR('/misc/top-subs');
+  const { data: posts } = useSWR<Post[]>('/posts');
+  const { data: topSubs } = useSWR<Sub[]>('/misc/top-subs');
+
+  const { authenticated } = useAuthState();
 
   return (
     <Fragment>
@@ -38,20 +41,22 @@ export default function Home() {
               </p>
             </div>
             <div>
-              {topSubs?.map((sub: Sub) => {
+              {topSubs?.map((sub) => {
                 return (
                   <div
                     key={sub.name}
                     className="flex items-center px-4 py-2 text-xs border-bottom"
                   >
-                    <Link href={`/r/${sub.name}`} passHref>
-                      <Image
-                        src={sub.imageUrl}
-                        alt="Sub"
-                        width={(6 * 16) / 4}
-                        height={(6 * 16) / 4}
-                        className="rounded-full cursor-pointer"
-                      />
+                    <Link href={`/r/${sub.name}`}>
+                      <a>
+                        <Image
+                          src={sub.imageUrl}
+                          alt="Sub"
+                          width={(6 * 16) / 4}
+                          height={(6 * 16) / 4}
+                          className="rounded-full cursor-pointer"
+                        />
+                      </a>
                     </Link>
 
                     <Link href={`/r/${sub.name}`}>
@@ -64,6 +69,15 @@ export default function Home() {
                 );
               })}
             </div>
+            {authenticated && (
+              <div className="p-4 border-t-2">
+                <Link href="/subs/create">
+                  <a className="w-full px-2 py-1 blue button">
+                    Create Community
+                  </a>
+                </Link>
+              </div>
+            )}
           </div>
         </div>
       </div>

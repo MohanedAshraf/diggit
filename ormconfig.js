@@ -18,5 +18,10 @@ module.exports = {
     "entitiesDir": rootDir + "/entities",
     "migrationsDir": rootDir + "/migrations",
     "subscribersDir": rootDir + "/subscribers"
+  },
+  "extra": {
+    "ssl": {
+      "rejectUnauthorized": false,
+    }
   }
 }

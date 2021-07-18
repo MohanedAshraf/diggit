@@ -81,6 +81,7 @@ const ownSub = async (req: Request, res: Response, next: NextFunction) => {
     if (sub.username !== user.username) {
       return res.status(403).json({ error: 'You dont own this sub' });
     }
+
     res.locals.sub = sub;
     return next();
   } catch (err) {
@@ -107,6 +108,9 @@ const upload = multer({
 
 const uploadSubImage = async (req: Request, res: Response) => {
   const sub: Sub = res.locals.sub;
+  if (!req.file) {
+    return res.status(400).json({ error: 'File Missing' });
+  }
   try {
     const type = req.body.type;
 

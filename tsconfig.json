@@ -22,5 +22,7 @@
     "noImplicitReturns": true,
     "noFallthroughCasesInSwitch": true,
     "resolveJsonModule": true
-  }
+  },
+  "include": ["src/**/*"],
+  "exclude": ["node_modules", "client"]
 }

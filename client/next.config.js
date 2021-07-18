@@ -2,7 +2,7 @@ module.exports = {
   reactStrictMode: true,
   images: {
     disableStaticImages: true,
-    domains: ['www.gravatar.com' , 'localhost']
+    domains: ['www.gravatar.com' , process.env.APP_DOMAIN]
   },
     webpack(config) {
       config.module.rules.push({

@@ -35,7 +35,7 @@ app.use(
 app.use(express.static('public'));
 
 //routes
-app.get('/', (_, res) => {
+app.get('/api', (_, res) => {
   res.send('hello world');
 });
 app.use('/api/auth', authRoutes);

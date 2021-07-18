@@ -8,6 +8,7 @@
     "@types/cookie-parser": "^1.4.2",
     "@types/cors": "^2.8.10",
     "@types/express": "^4.17.12",
+    "@types/faker": "^5.5.7",
     "@types/jsonwebtoken": "^8.5.1",
     "@types/morgan": "^1.9.2",
     "@types/multer": "^1.4.6",
@@ -33,7 +34,7 @@
     "typeorm-seeding": "^1.6.1"
   },
   "scripts": {
-    "start": "ts-node src/server.ts",
+    "start": "node build/server.js",
     "server": "nodemon --exec ts-node src/server.ts",
     "typeorm": "ts-node ./node_modules/typeorm/cli.js",
     "client": "cd client &&  npm run dev",

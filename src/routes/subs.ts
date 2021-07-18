@@ -1,6 +1,6 @@
-import { Request, response, Response, Router } from 'express';
-import { isDataURI, isEmpty } from 'class-validator';
-import { getRepository, SubjectRemovedAndUpdatedError } from 'typeorm';
+import { Request, Response, Router } from 'express';
+import { isEmpty } from 'class-validator';
+import { getRepository } from 'typeorm';
 import multer, { FileFilterCallback } from 'multer';
 import path from 'path';
 import fs from 'fs';

@@ -1,9 +1,9 @@
-import { Request, response, Response, Router } from 'express';
-import { isDataURI, isEmpty } from 'class-validator';
-import { getRepository, SubjectRemovedAndUpdatedError } from 'typeorm';
+import { Request, Response, Router } from 'express';
+import { isEmpty } from 'class-validator';
+import { getRepository } from 'typeorm';
 import multer, { FileFilterCallback } from 'multer';
 import path from 'path';
-import fs from 'fs';
+import fs, { PathLike } from 'fs';
 
 import User from '../entities/User';
 import Sub from '../entities/Sub';
@@ -81,6 +81,7 @@ const ownSub = async (req: Request, res: Response, next: NextFunction) => {
     if (sub.username !== user.username) {
       return res.status(403).json({ error: 'You dont own this sub' });
     }
+
     res.locals.sub = sub;
     return next();
   } catch (err) {
@@ -107,21 +108,24 @@ const upload = multer({
 
 const uploadSubImage = async (req: Request, res: Response) => {
   const sub: Sub = res.locals.sub;
+  if (!req.file) {
+    return res.status(400).json({ error: 'File Missing' });
+  }
   try {
     const type = req.body.type;
 
     if (type !== 'image' && type !== 'banner') {
-      fs.unlinkSync(req.file.path);
+      fs.unlinkSync(req.file.path as PathLike);
       return res.status(400).json({ error: 'Invalid Type' });
     }
 
     let oldImageUrn: string = '';
     if (type === 'image') {
       oldImageUrn = sub.imageUrn || '';
-      sub.imageUrn = req.file.filename;
+      sub.imageUrn = req.file.filename as string;
     } else if (type === 'banner') {
       oldImageUrn = sub.bannerUrn || '';
-      sub.bannerUrn = req.file.filename;
+      sub.bannerUrn = req.file.filename as string;
     }
 
     if (oldImageUrn !== '') {

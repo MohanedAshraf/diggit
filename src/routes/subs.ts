@@ -3,7 +3,7 @@ import { isEmpty } from 'class-validator';
 import { getRepository } from 'typeorm';
 import multer, { FileFilterCallback } from 'multer';
 import path from 'path';
-import fs from 'fs';
+import fs, { PathLike } from 'fs';
 
 import User from '../entities/User';
 import Sub from '../entities/Sub';
@@ -111,17 +111,17 @@ const uploadSubImage = async (req: Request, res: Response) => {
     const type = req.body.type;
 
     if (type !== 'image' && type !== 'banner') {
-      fs.unlinkSync(req?.file?.path);
+      fs.unlinkSync(req.file.path as PathLike);
       return res.status(400).json({ error: 'Invalid Type' });
     }
 
     let oldImageUrn: string = '';
     if (type === 'image') {
       oldImageUrn = sub.imageUrn || '';
-      sub.imageUrn = req?.file?.filename;
+      sub.imageUrn = req.file.filename as string;
     } else if (type === 'banner') {
       oldImageUrn = sub.bannerUrn || '';
-      sub.bannerUrn = req?.file?.filename;
+      sub.bannerUrn = req.file.filename as string;
     }
 
     if (oldImageUrn !== '') {

@@ -10,7 +10,6 @@ import SideBar from '../../components/SideBar';
 import { Sub } from '../../types';
 
 import { useAuthState } from '../../context/auth';
-import { ClassTransformer } from 'class-transformer';
 import axios from 'axios';
 
 export default function SubPage() {

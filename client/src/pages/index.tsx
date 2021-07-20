@@ -111,7 +111,7 @@ export default function Home() {
                   >
                     <Link href={`/r/${sub.name}`}>
                       <a>
-                        <Image
+                        <img
                           src={sub.imageUrl}
                           alt="Sub"
                           width={(6 * 16) / 4}

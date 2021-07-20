@@ -112,7 +112,7 @@ export default function SubPage() {
             <div className="h-20 bg-white">
               <div className="container relative flex">
                 <div className="absolute" style={{ top: -15 }}>
-                  <Image
+                  <img
                     src={sub.imageUrl}
                     alt="Sub"
                     className={classNames('rounded-full', {

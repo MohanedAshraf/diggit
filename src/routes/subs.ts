@@ -122,18 +122,14 @@ const uploadSubImage = async (req: Request, res: Response) => {
     }
     const result = await cloudinary.uploader.upload(req.file.path);
 
-    let oldImageUrn: string = '';
     if (type === 'image') {
-      oldImageUrn = sub.imageUrn || '';
-      sub.imageUrn = `${result.original_filename}.${result.format}` as string;
+      sub.imageUrn = result.url;
     } else if (type === 'banner') {
-      oldImageUrn = sub.bannerUrn || '';
-      sub.bannerUrn = `${result.original_filename}.${result.format}` as string;
+      sub.bannerUrn = result.url;
     }
 
-    if (oldImageUrn !== '') {
-      fs.unlinkSync(`public\\images\\${oldImageUrn}`);
-    }
+    fs.unlinkSync(req.file.path as PathLike);
+
     await sub.save();
 
     return res.json(sub);

@@ -14,6 +14,8 @@ import user from '../middleware/user';
 import { makeId } from '../util/helpers';
 import { NextFunction } from 'express-serve-static-core';
 
+import cloudinary from '../util/cloudinary';
+
 const createSub = async (req: Request, res: Response) => {
   const { name, title, description } = req.body;
 
@@ -118,22 +120,21 @@ const uploadSubImage = async (req: Request, res: Response) => {
       fs.unlinkSync(req.file.path as PathLike);
       return res.status(400).json({ error: 'Invalid Type' });
     }
+    const result = await cloudinary.uploader.upload(req.file.path);
 
-    let oldImageUrn: string = '';
     if (type === 'image') {
-      oldImageUrn = sub.imageUrn || '';
-      sub.imageUrn = req.file.filename as string;
+      sub.imageUrn = result.url;
     } else if (type === 'banner') {
-      oldImageUrn = sub.bannerUrn || '';
-      sub.bannerUrn = req.file.filename as string;
+      sub.bannerUrn = result.url;
     }
 
-    if (oldImageUrn !== '') {
-      fs.unlinkSync(`public\\images\\${oldImageUrn}`);
-    }
+    fs.unlinkSync(req.file.path as PathLike);
+
     await sub.save();
+
     return res.json(sub);
   } catch (err) {
+    console.log(err);
     return res.status(500).json({ error: 'Something Went wrong' });
   }
 };

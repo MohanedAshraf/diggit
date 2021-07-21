@@ -1,9 +1,10 @@
 import axios from 'axios';
-import { GetServerSideProps } from 'next';
+// import { GetServerSideProps } from 'next';
 import Head from 'next/head';
 import { FormEvent, useState } from 'react';
 import classNames from 'classnames';
 import { useRouter } from 'next/router';
+import { useAuthState } from '../../context/auth';
 
 export default function Create() {
   const [name, setName] = useState('');
@@ -12,10 +13,14 @@ export default function Create() {
 
   const [errors, setErrors] = useState<Partial<any>>({});
 
+  const { authenticated } = useAuthState();
+
   const router = useRouter();
 
   const submitForm = async (event: FormEvent) => {
     event.preventDefault();
+
+    if (!authenticated) router.push('/login');
 
     try {
       const res = await axios.post('/subs', { name, title, description });
@@ -95,14 +100,14 @@ export default function Create() {
   );
 }
 
-export const getServerSideProps: GetServerSideProps = async ({ req, res }) => {
-  try {
-    const cookie = req.headers.cookie;
-    if (!cookie) throw new Error('Missing auth token cookie');
+// export const getServerSideProps: GetServerSideProps = async ({ req, res }) => {
+//   try {
+//     const cookie = req.headers.cookie;
+//     if (!cookie) throw new Error('Missing auth token cookie');
 
-    await axios.get('/auth/me', { headers: { cookie } });
-    return { props: {} };
-  } catch (err) {
-    res.writeHead(307, { Location: '/login' }).end();
-  }
-};
+//     await axios.get('/auth/me', { headers: { cookie } });
+//     return { props: {} };
+//   } catch (err) {
+//     res.writeHead(307, { Location: '/login' }).end();
+//   }
+// };

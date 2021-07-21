@@ -23,6 +23,7 @@ const app = express();
 app.use(express.json());
 app.use(morgan('dev'));
 app.use(trim);
+app.set('trust proxy', 1);
 app.use(cookieParser());
 app.use(
   cors({

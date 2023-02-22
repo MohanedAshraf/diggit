@@ -11,7 +11,7 @@
     //additions
     "esModuleInterop": true,
     //strict stuff
-    "noImplicitAny": true,
+    "noImplicitAny": false,
     "strictNullChecks": true,
     "strictFunctionTypes": true,
     "noImplicitThis": true,

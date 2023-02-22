@@ -110,21 +110,20 @@ export default function Home() {
                     className="flex items-center px-4 py-2 text-xs border-bottom"
                   >
                     <Link href={`/r/${sub.name}`}>
-                      <a>
-                        <img
-                          src={sub.imageUrl}
-                          alt="Sub"
-                          width={(6 * 16) / 4}
-                          height={(6 * 16) / 4}
-                          className="rounded-full cursor-pointer"
-                        />
-                      </a>
+
+                      <img
+                        src={sub.imageUrl}
+                        alt="Sub"
+                        width={(6 * 16) / 4}
+                        height={(6 * 16) / 4}
+                        className="rounded-full cursor-pointer"
+                      />
+
                     </Link>
 
-                    <Link href={`/r/${sub.name}`}>
-                      <a className="ml-2 font-bold hover:cursor-pointer">
-                        /r/${sub.name}
-                      </a>
+                    <Link href={`/r/${sub.name}`} className="ml-2 font-bold hover:cursor-pointer">
+                      /r/${sub.name}
+
                     </Link>
                     <p className="ml-auto font-med">{sub.postCount}</p>
                   </div>
@@ -133,10 +132,10 @@ export default function Home() {
             </div>
             {authenticated && (
               <div className="p-4 border-t-2">
-                <Link href="/subs/create">
-                  <a className="w-full px-2 py-1 blue button">
+                <Link href="/subs/create" className="w-full px-2 py-1 blue button">
+                  
                     Create Community
-                  </a>
+                  
                 </Link>
               </div>
             )}

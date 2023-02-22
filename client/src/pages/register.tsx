@@ -80,11 +80,9 @@ export default function Register() {
           </form>
           <small>
             Already a diggitor?
-            <Link href="/login">
-              <a className="ml-1 text-xs font-bold text-blue-600 uppercase ">
-                {' '}
-                LOG IN
-              </a>
+            <Link href="/login" className="ml-1 text-xs font-bold text-blue-600 uppercase ">
+
+              {' '}LOG IN
             </Link>
           </small>
         </div>

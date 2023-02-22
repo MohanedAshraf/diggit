@@ -11,10 +11,10 @@ export default function NotFound() {
       <h1 className="mt-10 mb-4 text-5xl font-bold text-gray-800">
         Page Not Found
       </h1>
-      <Link href="/">
-        <a href="" className="px-4 py-2 text-lg rounded-lg blue button">
+      <Link href="/" className="px-4 py-2 text-lg rounded-lg blue button">
+        
           GO Home
-        </a>
+        
       </Link>
     </div>
   );

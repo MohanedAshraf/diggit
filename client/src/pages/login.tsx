@@ -75,11 +75,11 @@ export default function Register() {
           </form>
           <small>
             New to diggit?
-            <Link href="/register">
-              <a className="ml-1 text-xs font-bold text-blue-600 uppercase ">
-                {' '}
-                Sign Up
-              </a>
+            <Link
+              href="/register"
+              className="ml-1 text-xs font-bold text-blue-600 uppercase ">
+
+              {' '}Sign Up
             </Link>
           </small>
         </div>

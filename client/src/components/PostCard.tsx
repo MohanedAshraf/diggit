@@ -91,7 +91,7 @@ export default function PostCard({
         <div className="flex items-center">
           {!isInSubPage && (
             <>
-              <Link href={`/r/${subName}`} passHref>
+              <Link href={`/r/${subName}`} passHref legacyBehavior>
                 <img
                   src={sub.imageUrl}
                   alt="Author profile picture"
@@ -99,39 +99,38 @@ export default function PostCard({
                 />
               </Link>
 
-              <Link href={`/r/${subName}`}>
-                <a className="text-xs font-bold hover:underline">
-                  /r/{subName}
-                </a>
+              <Link href={`/r/${subName}`} className="text-xs font-bold hover:underline">
+                /r/{subName}
+
               </Link>
               <span className="mx-1 text-xs text-gray-500">• </span>
             </>
           )}
           <p className="text-xs text-gray-500">
             Posted by
-            <Link href={`/u/${username}`}>
-              <a className="mx-1 hover:underline">/u/{username}</a>
+            <Link href={`/u/${username}`} className="mx-1 hover:underline">
+              /u/{username}
             </Link>
-            <Link href={url}>
-              <a className="mx-1 hover:underline">
-                {dayjs(createdAt).fromNow()}
-              </a>
+            <Link href={url} className="mx-1 hover:underline">
+
+              {dayjs(createdAt).fromNow()}
+
             </Link>
           </p>
         </div>
 
-        <Link href={url}>
-          <a className="my-1 text-lg font-medium">{title}</a>
+        <Link href={url} className="my-1 text-lg font-medium">
+          {title}
         </Link>
         {body && <p className="my-1 text-sm">{body}</p>}
         <div className="flex">
           <Link href={url}>
-            <a>
-              <ActionButton>
-                <i className="mr-1 fas fa-comment-alt fa-xs"></i>
-                <span className="font-bold">{commentCount} Comments</span>
-              </ActionButton>
-            </a>
+
+            <ActionButton>
+              <i className="mr-1 fas fa-comment-alt fa-xs"></i>
+              <span className="font-bold">{commentCount} Comments</span>
+            </ActionButton>
+
           </Link>
           <ActionButton>
             <i className="mr-1 fas fa-share fa-xs"></i>

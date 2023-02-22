@@ -1,5 +1,7 @@
 module.exports = {
-  ignoreDuringBuilds: true,
+  eslint: {
+    ignoreDuringBuilds: true,
+  },
   reactStrictMode: true,
   images: {
     disableStaticImages: true,
